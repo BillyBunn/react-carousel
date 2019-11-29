@@ -9,34 +9,118 @@ const useCarousel = (elementWidth, totalElements, windowSize) => {
     elementsInViewport: 0,
     gapFromEnd: 0,
     gapFromStart: 0,
+    maxDistance: 0,
+    minDistance: 0,
     overflowLeft: 0,
     overflowRight: 0
   };
 
   function reducer(state, action) {
     switch (action.type) {
-      case "GO_FORWARD":
+      case "GO_FORWARD": {
+        let {
+          atEnd,
+          containerWidth,
+          distance,
+          gapFromEnd,
+          maxDistance,
+          overflowLeft,
+          overflowRight
+        } = state;
+
+        // can't go further if already at end
+        if (atEnd) return state;
+
+        // prev distance + width of carousel
+        const distanceCalc =
+          distance +
+          containerWidth +
+          overflowRight -
+          (elementWidth + elementWidth / 2);
+
+        // are we at the end now?
+        atEnd = distanceCalc >= maxDistance;
+
+        // travel forward as far as we can
+        distance = atEnd ? maxDistance : distanceCalc;
+
+        // how much of the rightmost card is cut off screen?
+        overflowRight = atEnd
+          ? 0
+          : elementWidth - ((containerWidth - elementWidth / 2) % elementWidth);
+
+        // how much of the leftmost card is cut off screen?
+        overflowLeft = atEnd
+          ? elementWidth - ((containerWidth - gapFromEnd) % elementWidth)
+          : elementWidth / 2;
+
         return {
           ...state,
           atEnd,
+          atStart: false,
+          distance,
+          overflowLeft,
+          overflowRight
+        };
+      }
+
+      case "GO_BACK": {
+        let {
+          atStart,
+          containerWidth,
+          distance,
+          gapFromStart,
+          minDistance,
+          overflowLeft,
+          overflowRight
+        } = state;
+
+        // can't go back if already at start
+        if (atStart) return state;
+
+        // prev distance - width of carousel
+        const distanceCalc =
+          distance -
+          containerWidth +
+          overflowLeft -
+          (elementWidth + elementWidth / 2);
+
+        // are we back at the start now?
+        atStart = distanceCalc <= minDistance;
+
+        // travel back as far as we can
+        distance = atStart ? minDistance : distanceCalc;
+
+        // how much of the leftmost card is cut off screen?
+        overflowLeft = atStart
+          ? 0
+          : elementWidth - ((containerWidth - elementWidth / 2) % elementWidth);
+
+        // how much of the rightmost card is cut off screen?
+        overflowRight = atStart
+          ? elementWidth - ((containerWidth - gapFromStart) % elementWidth)
+          : elementWidth / 2;
+
+        return {
+          ...state,
+          atEnd: false,
           atStart,
           distance,
           overflowLeft,
           overflowRight
         };
-      case "GO_BACK":
-        return {
-          ...state,
-          atEnd,
-          atStart,
-          distance,
-          overflowLeft,
-          overflowRight
-        };
+      }
       case "SET_CONTAINER_WIDTH":
         return { ...state, containerWidth: action.payload };
       case "SET_ELEMENTS_IN_VIEWPORT":
         return { ...state, elementsInViewport: action.payload };
+      case "SET_MAX_DISTANCE": {
+        let { elementWidth, totalElements } = action.payload;
+        let { gapFromEnd } = state;
+        let maxDistance =
+          elementWidth * totalElements - (containerWidth - gapFromEnd);
+        return { ...state, maxDistance };
+      }
       default:
         throw new Error();
     }
