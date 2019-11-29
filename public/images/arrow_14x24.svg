@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="40px" viewBox="0 0 30 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 58 (101010) - https://sketch.com -->
+    <title>E6DFE312-7360-4F5C-B475-FFE65C2BD6F2</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <filter x="-33.3%" y="-33.3%" width="166.7%" height="166.7%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="111319---Landing-Pages-Updates" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="RecipeLanding_Desktop_1280" transform="translate(-35.000000, -1258.000000)" fill="#F47521" fill-rule="nonzero">
+            <g id="CATEGORY_ROWS" transform="translate(-50.000000, 675.000000)">
+                <g id="Arrow_LEFT" transform="translate(100.000000, 601.000000) rotate(-180.000000) translate(-100.000000, -601.000000) translate(50.000000, 452.000000)">
+                    <g id="Arrow+Circle" filter="url(#filter-1)" transform="translate(20.000000, 119.000000)">
+                        <path d="M36.5914516,20.2766806 C37.1361828,19.7537411 37.1361828,18.912036 36.5914516,18.3890805 C36.0423464,17.8703065 35.1585261,17.8703065 34.6094042,18.3890805 L23.4085484,29.0561999 C22.8638172,29.5791395 22.8638172,30.4208445 23.4085484,30.9438001 L34.6094042,41.6109195 C35.1585093,42.1296935 36.0423296,42.1296935 36.5914516,41.6109195 C37.1361828,41.08798 37.1361828,40.2462749 36.5914516,39.7233194 L26.3796314,30.00024 L36.5914516,20.2766806 Z" id="arrow_14x24" transform="translate(30.000000, 30.000000) rotate(-180.000000) translate(-30.000000, -30.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
