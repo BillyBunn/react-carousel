@@ -7,12 +7,12 @@ const SliderBlock = styled.div`
   flex-wrap: nowrap;
   overflow-x: auto;
 `;
-const Block = ({ title, tiles }) => {
+const Block = ({ title, cards }) => {
   return (
     <div style={{ marginTop: "50px" }}>
       <h2>{title}</h2>
       <SliderBlock className="deck">
-        {tiles.map((tile, i) => (
+        {cards.map((tile, i) => (
           <SliderCard data={tile} key={i} />
         ))}
       </SliderBlock>

@@ -97,7 +97,7 @@ const Info = styled.div`
     }
   }
 `;
-const Deck = ({ title, tiles, activeSlide }) => {
+const Deck = ({ title, cards, activeSlide }) => {
   const windowSize = useWindowSize();
   const [currentSlide, setCurrentSlide] = useState(activeSlide);
   const { elementWidth, elementRef } = useElementWidth();
@@ -109,7 +109,7 @@ const Deck = ({ title, tiles, activeSlide }) => {
     atEnd,
     atStart,
     distance
-  } = useCarousel(elementWidth, tiles.length, windowSize.width);
+  } = useCarousel(elementWidth, cards.length, windowSize.width);
 
   const handleSelect = movie => {
     setCurrentSlide(movie);
@@ -130,15 +130,15 @@ const Deck = ({ title, tiles, activeSlide }) => {
     <Context.Provider value={contextValue}>
       <Info>
         <ul>
-          <li className={atStart && "at-start"}>At Start</li>
+          <li className={atStart ? "at-start" : ""}>At Start</li>
           <li className="distance">Distance: {distance}px</li>
-          <li className={atEnd && "at-end"}>At End</li>
+          <li className={atEnd ? "at-end" : ""}>At End</li>
         </ul>
       </Info>
       <h2>{title}</h2>
       <Carousel className="deck">
         <div ref={containerRef} {...slideProps}>
-          {tiles.map((tile, i) => (
+          {cards.map((tile, i) => (
             <Card data={tile} key={i} />
           ))}
         </div>

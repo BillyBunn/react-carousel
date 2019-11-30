@@ -1,10 +1,10 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 
-import CarouselBlock from "./Carousel";
-import SliderBlock from "./Slider";
+import CarouselDeck from "./Carousel";
+import SliderDeck from "./Slider";
 
-import block from "../content";
+import deck from "../content";
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -32,11 +32,11 @@ function App() {
       <h1>React Carousels</h1>
       <h3>Better than your average carousel…</h3>
       <p>
-        Made with hooks, aware of start/end breaks, use any spacing between
-        cards
+        Aware of start/end point, behaves as expected on window resize, use any
+        margin/padding on cards
       </p>
-      <CarouselBlock title={block.title} tiles={block.tiles} />
-      <SliderBlock title={block.title} tiles={block.tiles} />
+      <CarouselDeck title={deck.title} cards={deck.cards} />
+      <SliderDeck title={deck.title} cards={deck.cards} />
     </div>
   );
 }

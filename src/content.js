@@ -1,6 +1,6 @@
 export default {
   title: "Breakfast",
-  tiles: [
+  cards: [
     {
       title: "Buttermilk Pancakes",
       baseImageUrl: "https://placehold.it/300x200",
