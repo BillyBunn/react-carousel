@@ -32,6 +32,71 @@ const Carousel = styled.div`
     width: 100%;
   }
 `;
+const Info = styled.div`
+  ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    margin: 0px auto;
+    max-width: 700px;
+    padding: 0;
+    li {
+      --bd-radius: 8px;
+      background: #ebebeb;
+      border-radius: var(--bd-radius);
+      color: #a1a1a1;
+      font-weight: 600;
+      padding: 8px 14px;
+      text-transform: uppercase;
+      &.distance {
+        color: #000;
+        min-width: 183px;
+      }
+      &.at-start {
+        background: limegreen;
+        background-image: linear-gradient(green, lime);
+        box-shadow: 0px 1px 4px -2px #333;
+        color: #fff;
+        position: relative;
+        text-shadow: 0px -1px #333;
+        &:after {
+          background: linear-gradient(
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.2)
+          );
+          border-radius: var(--bd-radius) var(--bd-radius) 0 0;
+          content: "";
+          height: 50%;
+          left: 2px;
+          position: absolute;
+          top: 2px;
+          width: calc(100% - 4px);
+        }
+      }
+      &.at-end {
+        background: limegreen;
+        background-image: linear-gradient(tomato, orangered);
+        box-shadow: 0px 1px 4px -2px #333;
+        color: #fff;
+        position: relative;
+        text-shadow: 0px -1px #333;
+        &:after {
+          background: linear-gradient(
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.2)
+          );
+          border-radius: var(--bd-radius) var(--bd-radius) 0 0;
+          content: "";
+          height: 50%;
+          left: 2px;
+          position: absolute;
+          top: 2px;
+          width: calc(100% - 4px);
+        }
+      }
+    }
+  }
+`;
 const Deck = ({ title, tiles, activeSlide }) => {
   const windowSize = useWindowSize();
   const [currentSlide, setCurrentSlide] = useState(activeSlide);
@@ -41,8 +106,9 @@ const Deck = ({ title, tiles, activeSlide }) => {
     handleNext,
     slideProps,
     containerRef,
-    hasNext,
-    hasPrev
+    atEnd,
+    atStart,
+    distance
   } = useCarousel(elementWidth, tiles.length, windowSize.width);
 
   const handleSelect = movie => {
@@ -62,6 +128,13 @@ const Deck = ({ title, tiles, activeSlide }) => {
 
   return (
     <Context.Provider value={contextValue}>
+      <Info>
+        <ul>
+          <li className={atStart && "at-start"}>At Start</li>
+          <li className="distance">Distance: {distance}px</li>
+          <li className={atEnd && "at-end"}>At End</li>
+        </ul>
+      </Info>
       <h2>{title}</h2>
       <Carousel className="deck">
         <div ref={containerRef} {...slideProps}>
@@ -69,12 +142,12 @@ const Deck = ({ title, tiles, activeSlide }) => {
             <Card data={tile} key={i} />
           ))}
         </div>
-        {hasPrev && (
+        {!atStart && (
           <Button onClick={handlePrev} type="prev">
             prev
           </Button>
         )}
-        {hasNext && (
+        {!atEnd && (
           <Button onClick={handleNext} type="next">
             next
           </Button>

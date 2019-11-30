@@ -19,7 +19,7 @@ body {
   font-family: Montserrat, sans-serif;
   margin: 0;
   box-sizing: border-box;
-  h1 {
+  h1, h3, p {
     text-align: center;
   }  
 }
@@ -29,7 +29,12 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <h1>Slider Carousels</h1>
+      <h1>React Carousels</h1>
+      <h3>Better than your average carousel…</h3>
+      <p>
+        Made with hooks, aware of start/end breaks, use any spacing between
+        cards
+      </p>
       <CarouselBlock title={block.title} tiles={block.tiles} />
       <SliderBlock title={block.title} tiles={block.tiles} />
     </div>

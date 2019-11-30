@@ -204,10 +204,18 @@ const useCarousel = (elementWidth, totalElements, windowSize) => {
   const handlePrev = () => dispatch({ type: "GO_BACK" });
   const handleNext = () => dispatch({ type: "GO_FORWARD" });
 
-  const hasPrev = !state.atStart;
-  const hasNext = !state.atEnd;
+  const atStart = state.atStart;
+  const atEnd = state.atEnd;
 
-  return { handlePrev, handleNext, slideProps, containerRef, hasPrev, hasNext };
+  return {
+    handlePrev,
+    handleNext,
+    slideProps,
+    containerRef,
+    atStart,
+    atEnd,
+    distance: state.distance
+  };
 };
 
 export default useCarousel;
