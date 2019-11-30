@@ -13,6 +13,7 @@ const CarouselItem = styled.a`
   /* max-width: 330px; */
   text-decoration: none;
   transition: transform 300ms ease 100ms;
+  margin: 0px 20px;
   & + * {
     /* margin-left: 20px; */
   }

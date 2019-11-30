@@ -6,10 +6,19 @@ const useElementWidth = () => {
   const [elementWidth, setElementWidth] = useState(0);
 
   useEffect(() => {
-    setElementWidth(elementRef.current.offsetWidth);
-  }, [elementRef.current]);
+    setElementWidth(outerWidth(elementRef.current));
+  }, []);
 
   return { elementWidth, elementRef };
 };
 
 export default useElementWidth;
+
+// http://youmightnotneedjquery.com/#outer_width_with_margin
+function outerWidth(el) {
+  var width = el.offsetWidth;
+  var style = getComputedStyle(el);
+
+  width += parseInt(style.marginLeft, 10) + parseInt(style.marginRight, 10);
+  return width;
+}
