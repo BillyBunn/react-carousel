@@ -1,5 +1,5 @@
 import { useRef, useEffect, useReducer } from "react";
-import { element } from "prop-types";
+// import { element } from "prop-types";
 const initialState = {
   atEnd: false,
   atStart: true,
